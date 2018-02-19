@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>New Post</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    <table>
+        {% for field in form %}
+        <tr><td><label>{{ field.label_tag }}</label></td><td>{{ field }}</td></tr>
+        <tr>
+            <td colspan="2">
+                {% for error in field.errors %}
+                    <p class="alert alert-danger" role="alert">{{ error }}</p>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2" align="center">
+                <button class="btn btn-primary" type="submit">Login</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<hr>
+{% endblock %}

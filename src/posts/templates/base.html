@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block head_title %}{% endblock %}
+    </title>
+    <link href="../../static/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="content" align="center">
+
+        <header>
+            {% block header %}
+                Main Manu:
+                {% if user.is_authenticated %}
+                    <a href="{% url 'home_page' %}">Home</a> |
+                    <a href="{% url 'new_post_page' %}">New Post</a> |
+                    <a href="{% url 'blog_list_page' %}">The Blogs</a> |
+                    <a href="{% url 'logout_page' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login_page' %}">Login</a> |
+                    <a href="{% url 'signup_page' %}">Signup</a>
+                {% endif %}
+            {% endblock %}
+        </header>
+
+        <hr>
+        <br>
+
+        {% block content %}{% endblock %}
+
+        <br>
+        <footer>
+            {% block footer %}
+                WordPlease Inc. KeepCoding 2018
+            {% endblock %}
+        </footer>
+
+    </div>
+</body>
+</html>

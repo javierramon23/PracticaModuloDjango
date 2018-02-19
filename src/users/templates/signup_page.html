@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head_title %}WordPlease SignUp Page{% endblock %}
+
+{% block content %}
+
+    <h1>Sign Up Page:</h1>
+
+    {% if messages %}
+
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        <form method="post" novalidate>
+
+            {% csrf_token %}
+            <table width="25%">
+                {% for field in form %}
+                <tr>
+                    <td>{{ field.label_tag }}</td><td>{{ field }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {% if field.help_text %}
+                        {% autoescape off %}
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        {% endautoescape%}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {% for error in field.errors %}
+                            <p class="alert alert-danger" role="alert">{{ error }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2" align="center">
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Blogs List Page{% endblock %}
+
+{% block content %}
+    <h1>WordPlease Blogs List:</h1>
+    <table width="20%">
+        {% for blog in blogs_list %}
+            <tr>
+                <td>El Blog de {{ blog.first_name }} {{ blog.last_name }}</td>
+                <td align="center"><a href="{% url 'blog_detail_page' blog.username %}">Go</a></td>
+            </tr>
+        {% endfor%}
+    </table>
+{% endblock %}

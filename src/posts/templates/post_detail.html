@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Post Detail {% endblock %}
+
+{% block content %}
+
+    {% for post in post %}
+
+        <table width="40%">
+            <tr align="center"><td><h1>{{ post.title }}</h1></td></tr>
+            <tr align="center"><td>
+                <strong>From:</strong> {{ post.owner.first_name }} {{ post.owner.last_name }}
+                <strong>Publish:</strong> {{ post.publish_date|date:"d/M/Y" }} | {{ post.publish_date|time:"H:i" }}
+                <strong>Tags:</strong> {% for category in post.category.all %} #{{ category }} {% endfor %}
+            </td></tr>
+            <tr><td><br></td></tr>
+            {% ifequal post.url None %}
+                <tr align="center"><td><img src="../../static/images/defaultImage.jpg" alt="{{ post.title }}"></td></tr>
+            {% else %}
+                <tr align="center"><td><img src="{{ post.url }}" alt="{{ post.title }}"></td></tr>
+            {% endifequal%}
+            <tr><td><br></td></tr>
+            <tr align="center"><td><strong><font size="+2">"{{ post.summary }}"</font></strong></td></tr>
+            <tr><td>{{ post.body }}</td></tr>
+        </table>
+
+    {% endfor %}
+    <hr>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head_title %}WordPlease Login Page{% endblock %}
+
+{% block content %}
+
+    <h1>WordPlease Login Page:</h1>
+
+    {% if messages %}
+        <!---->
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" novalidate>
+        <!-- -->
+        {% csrf_token %}
+        <div>
+            {{ form.as_p }}
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+
+{% endblock %}
