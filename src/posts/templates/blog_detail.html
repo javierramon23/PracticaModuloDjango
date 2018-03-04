@@ -15,9 +15,9 @@
             </td></tr>
             <tr><td></td></tr>
             {% if post.url == None or post.url == Null %}
-                <tr align="center"><td><img src="../../static/images/defaultImage.jpg" alt="{{ post.title }}"></td></tr>
+                <tr align="center"><td><img src="../../static/images/defaultImage.jpg" alt="{{ post.title }}" height="250"></td></tr>
             {% else %}
-                <tr align="center"><td><img src="{{ post.url }}" alt="{{ post.title }}"></td></tr>
+                <tr align="center"><td><img src="{{ post.url }}" alt="{{ post.title }}" height="250"></td></tr>
             {% endif %}
             <tr align="center"><td><strong>"{{ post.summary }}"</strong></td></tr>
             <tr align="center">
