@@ -14,11 +14,11 @@
                 <strong>Tags:</strong> {% for category in post.category.all %} #{{ category }} {% endfor %}
             </td></tr>
             <tr><td><br></td></tr>
-            {% ifequal post.url None %}
+            {% if post.url == None or post.url == Null %}
                 <tr align="center"><td><img src="../../static/images/defaultImage.jpg" alt="{{ post.title }}"></td></tr>
             {% else %}
                 <tr align="center"><td><img src="{{ post.url }}" alt="{{ post.title }}"></td></tr>
-            {% endifequal%}
+            {% endif %}
             <tr><td><br></td></tr>
             <tr align="center"><td><strong><font size="+2">"{{ post.summary }}"</font></strong></td></tr>
             <tr><td>{{ post.body }}</td></tr>

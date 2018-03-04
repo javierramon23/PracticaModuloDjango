@@ -9,6 +9,10 @@ class Category(models.Model):
 
     description = models.TextField(blank=True, null=True, default="")
 
+    class Meta:
+
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
 
@@ -17,13 +21,12 @@ class Post(models.Model):
 
     title = models.CharField(max_length=150)
 
-    summary = models.CharField(max_length=250, blank=True, null=True, default="")
+    summary = models.CharField(max_length=250)
 
     body = models.TextField()
 
     url = models.URLField(blank=True, null=True)
 
-    #
     publish_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
 
     category = models.ManyToManyField(Category)

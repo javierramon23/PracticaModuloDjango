@@ -4,14 +4,12 @@ from django.contrib.auth.models import User
 from django.utils.datetime_safe import datetime
 from django.shortcuts import render, redirect
 from django.views import View
-
 from posts.forms import PostForm
 from posts.models import Post
 
 
 @login_required
 def home(request):
-    #
     last_posts = Post.objects.all().filter(publish_date__lte=datetime.now()).order_by('-publish_date')
     return render(request, 'home_page.html', {'last_posts': last_posts})
 
@@ -42,7 +40,7 @@ def blogsList(request):
 
 @login_required
 def blogDetail(request, user_name):
-    user_post_list = Post.objects.filter(owner__username=user_name).order_by('-publish_date')
+    user_post_list = Post.objects.filter(owner__username=user_name).filter(publish_date__lte=datetime.now()).order_by('-publish_date')
     return render(request, 'blog_detail.html', {'post_list': user_post_list})
 
 
